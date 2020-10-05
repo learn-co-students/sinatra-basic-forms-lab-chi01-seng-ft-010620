@@ -3,17 +3,18 @@ require_relative 'config/environment'
 
 class App < Sinatra::Base
 
-  get '/' do
-    erb :index
-  end
+  post '/puppy' do 
+    puppy = params["puppy"]
+    @new_puppy = Puppy.new(puppy["name"], puppy["breed"], puppy["age"])
+    erb :puppy
+  end 
 
-  get '/new' do
-    erb :create_puppy
-  end
+  get '/new' do 
+    erb :new
+  end 
 
-  post '/puppy' do
-    @puppy = Puppy.new(@name = params[:name], @breed = params[:breed], @age = params[:age])
-    erb :display_puppy
-  end
+  get '/' do 
+    erb :hello
+  end 
 
 end
